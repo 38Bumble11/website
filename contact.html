@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact - My Website</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>Contact Me</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html" aria-current="page">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<form id="contact-form">
+  <label for="name">Name:</label><br />
+  <input type="text" id="name" name="name" required /><br /><br />
 
-  <main>
-    <section>
-      <h2>Send Me a Message</h2>
-      
-      <!-- The form sends data to send_mail.php -->
-      <form action="send_mail.php" method="POST">
-        <label for="name">Name:</label><br />
-        <input type="text" id="name" name="name" required /><br /><br />
+  <label for="email">Email:</label><br />
+  <input type="email" id="email" name="email" required /><br /><br />
 
-        <label for="email">Email:</label><br />
-        <input type="email" id="email" name="email" required /><br /><br />
+  <label for="message">Message:</label><br />
+  <textarea id="message" name="message" rows="5" required></textarea><br /><br />
 
-        <label for="message">Message:</label><br />
-        <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+  <button type="submit">Send</button>
+</form>
 
-        <button type="submit">Send</button>
-      </form>
+<p id="status"></p>
 
-    </section>
-  </main>
+<script>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('status');
 
-  <footer>
-    <p>© 2025 Cemil Ayaz</p>
-  </footer>
-</body>
-</html>
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
+
+    try {
+      const res = await fetch('/.netlify/functions/sendEmail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        status.textContent = 'Message sent successfully!';
+        form.reset();
+      } else {
+        status.textContent = 'Error: ' + result.error;
+      }
+    } catch (err) {
+      status.textContent = 'Error sending message.';
+    }
+  });
+</script>
