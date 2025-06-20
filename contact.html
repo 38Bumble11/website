@@ -2,43 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact - My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Cemil Ayaz</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    form {
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Contact Me</h1>
+    <h1>Contact Cemil Ayaz</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
-      <a href="contact.html" aria-current="page">Contact</a>
+      <a href="contact.html"><strong>Contact</strong></a>
     </nav>
   </header>
 
   <main>
     <section>
-      <h2>Send Me a Message</h2>
+      <h2>Send a message to Cemil Ayaz</h2>
+      <p>You can reach me directly at <strong>cemilayazpekkiyici@gmail.com</strong> or use the form below:</p>
 
-      <form action="https://formsubmit.co/cemilayazpekkiyici@gmail.com" method="POST">
-        <label>Name:<br />
-          <input type="text" name="name" required />
-        </label><br /><br />
+      <form action="https://formspree.io/f/xblyaarv" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required />
 
-        <label>Email:<br />
-          <input type="email" name="email" required />
-        </label><br /><br />
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required />
 
-        <label>Message:<br />
-          <textarea name="message" rows="5" required></textarea>
-        </label><br /><br />
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
 
-        <!-- Honeypot to prevent spam -->
-        <input type="text" name="_honey" style="display:none" />
-
-        <!-- Disable captcha -->
-        <input type="hidden" name="_captcha" value="false" />
+        <!-- Optional spam protection (honeypot) -->
+        <input type="text" name="_gotcha" style="display:none" />
 
         <button type="submit">Send</button>
       </form>
@@ -46,7 +92,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Your Name</p>
+    <p>© 2025 Cemil Ayaz — Email: cemilayazpekkiyici@gmail.com</p>
   </footer>
 </body>
 </html>
